@@ -1,1 +1,5 @@
-# advent-of-code-2023
+# Advent Of Code 2023
+
+Repo with my solutions for Advent Of Code 2023.
+
+Check the challenges here: https://adventofcode.com/
