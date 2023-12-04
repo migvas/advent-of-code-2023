@@ -1,4 +1,4 @@
-### Part 1
+# Part 1
 data_file = "test.txt"
 
 with open(data_file, "r") as f:
@@ -13,14 +13,16 @@ for line in lines:
         if c.isdigit():
             if not first_digit:
                 first_digit = c
-            
+
             last_digit = c
-    
+
     digit_sum += int(first_digit + last_digit)
 
 print(digit_sum)
 
-### Part 2
+# Part 2
+
+
 class Trie:
     def __init__(self):
         self.root = {
@@ -41,11 +43,11 @@ class Trie:
         current["is_word"] = True
         current["digit"] = str(digit)
 
-    def search_word(self, line_arr, starting_pos):
+    def search_word(self, line, starting_pos):
         current = self.root
 
-        for i in range(starting_pos, len(line_arr)):
-            c = line_arr[i]
+        for i in range(starting_pos, len(line)):
+            c = line[i]
             if not current["next_letter"].get(c):
                 return 0
 
@@ -53,14 +55,12 @@ class Trie:
 
             if current["is_word"]:
                 return current["digit"]
-            
-
-
 
 
 data_file = "data.txt"
 
-possible_digits = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+possible_digits = ["one", "two", "three", "four",
+                   "five", "six", "seven", "eight", "nine"]
 
 t = Trie()
 
@@ -78,19 +78,19 @@ for line in lines:
     last_digit = ''
     line_arr = list(clean_line)
 
-    for i in range(len(line_arr)):
-        if line_arr[i].isdigit():
+    for idx, c in enumerate(line_arr):
+        if c.isdigit():
             if not first_digit:
-                first_digit = line_arr[i]
-            
-            last_digit = line_arr[i]
+                first_digit = c
+
+            last_digit = c
 
         else:
-            digit = t.search_word(line_arr, i)
+            digit = t.search_word(line_arr, idx)
             if digit:
                 if not first_digit:
                     first_digit = digit
-            
+
                 last_digit = digit
 
     digit_sum += int(first_digit + last_digit)
