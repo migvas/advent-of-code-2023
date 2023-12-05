@@ -24,6 +24,15 @@ def convert_val(start, end, conversion_map):
             "end": end + m["increment"]
         })
             end = m["start"] - 1
+        elif start < m["start"] and end > m["end"]:
+            new_vals.extend(convert_val(start, m["start"] - 1, conversion_map))
+            new_vals.append({
+            "type": conversion_map["to"],
+            "start": m["start"] + m["increment"],
+            "end": m["end"] + m["increment"]
+            })
+            new_vals.extend(convert_val(m["end"] - 1, end, conversion_map))
+            return new_vals
             
         
     if not new_vals or start < end:
