@@ -1,4 +1,4 @@
-data_file = "data1.txt"
+data_file = "data.txt"
 
 with open(data_file, "r") as f:
     time_line = f.readline()

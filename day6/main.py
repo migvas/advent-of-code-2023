@@ -6,8 +6,11 @@ with open(data_file, "r") as f:
     time_line = f.readline()
     distance_line = f.readline()
 
-time = time_line.split(":")[1].strip()
-distance = distance_line.split(":")[1].strip()
+times = time_line.split(":")[1].strip().split()
+distances = distance_line.split(":")[1].strip().split()
+
+time = "".join(times)
+distance = "".join(distances)
 
 margin = 1
 
